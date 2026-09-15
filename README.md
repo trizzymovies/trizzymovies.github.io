@@ -1,2 +1,2 @@
 # trizzy-movies
-Trizzy Movies website
+Trizzyrwa Movies website
