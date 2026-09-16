@@ -4,8 +4,7 @@ const movies = [
     category: "Action",
     genre: "Action • Episode 12",
     description: "Young Swordsman Episode 12.",
-    poster:
-      poster: "Screenshot_20260916-075509.png",
+    poster: "Screenshot_20260916-075509.png",
       "https://pub-945fd499c47346f1923953fd79ef28c5.r2.dev/YOUNG%20SWORDSMAN%20EP12.mp4"
   },
 
