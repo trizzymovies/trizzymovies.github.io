@@ -9,48 +9,10 @@ video: "https://pub-945fd499c47346f1923953fd79ef28c5.r2.dev/YOUNG%20SWORDSMAN%20
   },
 
   {
-    title: "Midnight Run",
-    category: "Action",
-    genre: "Action • 2026",
-    description: "An action movie demo for Trizzy Movies.",
-    poster:
-      "https://placehold.co/600x900/161616/ffffff?text=Midnight+Run",
-    trailer:
-      "https://www.youtube.com/results?search_query=Midnight+Run+trailer"
-  },
+    
 
   {
-    title: "The Last Mission",
-    category: "Action",
-    genre: "Action • 2026",
-    description: "An exciting action mission.",
-    poster:
-      "https://placehold.co/600x900/1b1b1b/ffffff?text=The+Last+Mission",
-    trailer:
-      "https://www.youtube.com/results?search_query=The+Last+Mission+trailer"
-  },
-
-  {
-    title: "Funny Days",
-    category: "Comedy",
-    genre: "Comedy • 2026",
-    description: "A comedy movie demo.",
-    poster:
-      "https://placehold.co/600x900/222222/ffffff?text=Funny+Days",
-    trailer:
-      "https://www.youtube.com/results?search_query=comedy+movie+trailer"
-  },
-
-  {
-    title: "After Dark",
-    category: "Horror",
-    genre: "Horror • 2025",
-    description: "A horror movie demo.",
-    poster:
-      "https://placehold.co/600x900/151515/ffffff?text=After+Dark",
-    trailer:
-      "https://www.youtube.com/results?search_query=horror+movie+trailer"
-  }
+    
 ];
 
 const grid = document.querySelector("#movieGrid");
