@@ -1,34 +1,55 @@
 const movies = [
   {
-    title: "Young Swordsman EP12",
-    category: "Action",
-    genre: "Action • Episode 12",
+    title: "YOUNG SWORDSMAN EP12",
+    genre: "ACTION",
+    year: "2026",
+    poster: "13879.png",
     description: "Young Swordsman Episode 12.",
-    poster: "Screenshot_20260916-075509.png",
     video: "https://pub-945fd499c47346f1923953fd79ef28c5.r2.dev/YOUNG%20SWORDSMAN%20EP12.mp4"
+  },
+  {
+    title: "YOUNG SWORDSMAN EP13",
+    genre: "ACTION",
+    year: "2026",
+    poster: "13879.png",
+    description: "Young Swordsman Episode 13.",
+    video: "https://pub-945fd499c47346f1923953fd79ef28c5.r2.dev/YOUNG%20SWORDSMAN%20EP13.mp4"
+  },
+  {
+    title: "YOUNG SWORDSMAN EP14",
+    genre: "ACTION",
+    year: "2026",
+    poster: "13879.png",
+    description: "Young Swordsman Episode 14.",
+    video: "https://pub-945fd499c47346f1923953fd79ef28c5.r2.dev/YOUNG%20SWORDSMAN%20EP14.mp4"
+  },
+  {
+    title: "YOUNG SWORDSMAN EP15",
+    genre: "ACTION",
+    year: "2026",
+    poster: "13879.png",
+    description: "Young Swordsman Episode 15.",
+    video: "https://pub-945fd499c47346f1923953fd79ef28c5.r2.dev/YOUNG%20SWORDSMAN%20EP15.mp4"
+  },
+  {
+    title: "YOUNG SWORDSMAN EP16",
+    genre: "ACTION",
+    year: "2026",
+    poster: "13879.png",
+    description: "Young Swordsman Episode 16.",
+    video: "https://pub-945fd499c47346f1923953fd79ef28c5.r2.dev/YOUNG%20SWORDSMAN%20EP16.mp4"
   }
 ];
 
-const grid = document.getElementById("movieGrid");
+const movieGrid = document.getElementById("movieGrid");
 const searchInput = document.getElementById("searchInput");
-const noResults = document.getElementById("noResults");
 
-function renderMovies(list) {
-  grid.innerHTML = "";
+function renderMovies(list = movies) {
+  if (!movieGrid) return;
 
-  if (list.length === 0) {
-    noResults.hidden = false;
-    return;
-  }
-
-  noResults.hidden = true;
-
-  list.forEach(movie => {
-    const card = document.createElement("article");
-    card.className = "movie-card";
-
-    card.innerHTML = `
-      <img 
+  movieGrid.innerHTML = list.map((movie, index) => `
+    <div class="movie-card">
+      <img
         class="movie-poster"
         src="${movie.poster}"
         alt="${movie.title}"
@@ -36,44 +57,66 @@ function renderMovies(list) {
 
       <div class="movie-info">
         <h3>${movie.title}</h3>
+        <p>${movie.genre} • ${movie.year}</p>
 
-        <p class="movie-meta">
-          ${movie.genre}
-        </p>
+        <div class="movie-actions">
+          <button
+            class="card-btn watch-btn"
+            data-index="${index}"
+          >
+            ▶ WATCH
+          </button>
 
-        <a
-          href="${movie.video}"
-          target="_blank"
-          class="watch-button"
-        >
-          ▶ WATCH / PLAY
-        </a>
-
-        <a
-          href="${movie.video}"
-          download
-          class="download-button"
-        >
-          ⬇ DOWNLOAD
-        </a>
+          <a
+            class="card-btn download-btn"
+            href="${movie.video}"
+            download
+          >
+            ⬇ DOWNLOAD
+          </a>
+        </div>
       </div>
-    `;
+    </div>
+  `).join("");
 
-    grid.appendChild(card);
+  document.querySelectorAll(".watch-btn").forEach(button => {
+    button.addEventListener("click", () => {
+      const movie = list[Number(button.dataset.index)];
+      window.open(movie.video, "_blank");
+    });
   });
 }
 
-function filterMovies() {
-  const search = searchInput.value.toLowerCase().trim();
+/* SEARCH */
+if (searchInput) {
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase().trim();
 
-  const filtered = movies.filter(movie =>
-    movie.title.toLowerCase().includes(search) ||
-    movie.genre.toLowerCase().includes(search)
-  );
+    const results = movies.filter(movie =>
+      movie.title.toLowerCase().includes(query) ||
+      movie.genre.toLowerCase().includes(query)
+    );
 
-  renderMovies(filtered);
+    renderMovies(results);
+  });
 }
 
-searchInput.addEventListener("input", filterMovies);
+/* CATEGORIES */
+document.querySelectorAll("[data-category]").forEach(button => {
+  button.addEventListener("click", () => {
+    const category = button.dataset.category.toUpperCase();
 
-renderMovies(movies);
+    if (category === "ALL") {
+      renderMovies(movies);
+    } else {
+      renderMovies(
+        movies.filter(movie =>
+          movie.genre.toUpperCase() === category
+        )
+      );
+    }
+  });
+});
+
+/* SHOW ALL MOVIES */
+renderMovies();
